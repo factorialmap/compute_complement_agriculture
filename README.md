@@ -1,10 +1,11 @@
 ## About the book
 
-Statistical Analysis of Agricultura Experiments using R is a book written by Andrew Kniss and Jens Streibig in 2019 and available for online research.
+Statistical Analysis of Agriculture Experiments using R is a book written by Andrew Kniss and Jens Streibig in 2019 and available for online research.
 [Statistical Analysis of Agriculture Experiments using R](https://rstats4ag.org/)
 
 ## Goals of this folder
-- Provide additional code in R and Python to practice the exercises contained in the book
+
+Provide additional code in R and Python to practice the exercises contained in the book
 
 #### Descriptive Statistics
 - **Calculation group means** : Chapter 2
@@ -19,7 +20,7 @@ Statistical Analysis of Agricultura Experiments using R is a book written by And
 - **Compares the means of two separate, unrelated groups** to see if there's a significant difference between them(Independent sample) : Chapter 4
 
 #### Paired t-test
-- **Compares the means of two related groups(e.g., before and after intervention)** to determine if there's a significant difference : Chapter 4
+- **Special use case of One-sample t-test, and evaluate whether differences in paired values(e.g., before and after intervention)** to determine if there's a significant difference : Chapter 4
 
 #### Analysis of Variance(ANOVA)
 - **Compares the means of 3 or more groups** to determine if at least one group is significantly different. Analyzes spread within and between groups : Chapter 5
