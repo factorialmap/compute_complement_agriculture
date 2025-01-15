@@ -1,16 +1,17 @@
-#load packages
-library(tidyverse)
-library(infer)
-library(ggpubr)
-
-# data --------------------------------------------------------------------
+# data        --------------------------------------------------------------------
 data_sbeet_yield <- 
   read.csv("http://rstats4ag.org/data/sugarbeet.csv") %>% 
   janitor::clean_names() %>% 
   mutate(yield = round(yield*2.24,1),
          type = as.factor(type))
 
-# explore -----------------------------------------------------------------
+
+# use infer   ---------------------------------------------------------------
+library(tidyverse)
+library(infer)
+library(ggpubr)
+
+# explore     -----------------------------------------------------------------
 data_sbeet_yield %>% 
   gghistogram(x = "yield",
               add = "mean",
@@ -25,7 +26,7 @@ data_sbeet_yield %>%
             add = "jitter")+
   stat_compare_means()
 
-# approach 1 --------------------------------------------------------------
+# approach 1  --------------------------------------------------------------
 
 #calculate the difference between the groups
 sbeet_observed_stat <- 
@@ -53,3 +54,26 @@ null_dist_two_sample %>%
   get_p_value(obs_stat = sbeet_observed_stat,
               direction = "two-sided")
 
+
+# use rstatix -------------------------------------------------------------
+library(tidyverse)
+library(rstatix)
+library(ggpubr)
+
+# approach 2  --------------------------------------------------------------
+
+#t-test calculations
+t_test_sbeet <- 
+  data_sbeet_yield %>%
+  t_test(yield ~ type)
+
+#plot t-test(p-value) into boxplot visualization
+data_sbeet_yield %>% 
+  ggboxplot(x = "type",
+            y = "yield",
+            fill = "type",
+            palette = "uchicago",
+            ylim = c(30,85))+
+  stat_pvalue_manual(t_test_sbeet,
+                     label = "t-test \n p-value={p}",
+                     y.position = 75)

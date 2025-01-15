@@ -5,8 +5,8 @@ data_yield <-
     yield = c(2280,2690,2080,2820,1340,2080,2480,2420,2150,1880),
     mu = rep(1810,10))
 
-# mu t-test   ---------------------------------------------------------------
-#load packages
+# use infer   ---------------------------------------------------------------
+
 library(tidyverse)
 library(infer)
 
@@ -47,7 +47,7 @@ p_value_one_sample <-
   get_p_value(obs_stat = observed_stat,
               direction = "two-sided")
 
-# approch 3   ---------------------------------------------------------------
+# approach 3  ---------------------------------------------------------------
 
 observed_stat_3 <-
   data_yield %>% 
@@ -58,3 +58,15 @@ observed_stat_3 <-
 
 #p_value
 pt(unname(observed_stat_3), df = nrow(data_yield)-1, lower.tail = FALSE)*2
+
+# use rstatix -------------------------------------------------------------
+library(tidyverse)
+library(rstatix)
+library(ggpubr)
+
+# approach 4  --------------------------------------------------------------
+
+data_yield %>% t_test(yield~1, mu = 1810)
+
+
+
