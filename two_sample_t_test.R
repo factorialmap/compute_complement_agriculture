@@ -73,7 +73,8 @@ data_sbeet_yield %>%
             y = "yield",
             fill = "type",
             palette = "uchicago",
-            ylim = c(30,85))+
+            add = "jitter",
+            ylim = c(30,95))+
   stat_pvalue_manual(t_test_sbeet,
                      label = "t-test \n p-value={p}",
-                     y.position = 75)
+                     y.position = 85)
